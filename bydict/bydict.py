@@ -8,23 +8,26 @@ import getopt
 import sys
 from multiprocessing import Process
 
+
 #导入包,又是一个恶心的东西
 try:
     from audio import *
 except:
     from .audio import *
-    
-##_options = [
-##    'help',
-##    'version',
-##    'about'
-##]
-##_short_options = 'hva'
-##
-##_help = """Usage: {} [OPTION]... [URL]...
-##TODO
-##""".format(script_name)
 
+try:
+    from version import script_name, __version__
+except:
+    from .version import script_name, __version__
+    
+def useage():
+    print("""Useage:
+                    by your_word     (basic use)
+                    by your_word  -e (prounce in UK English accent, for english word only)
+                    by your_word  -u (prounce in US. English accent, for english word only)
+                    by -h            (for help)
+                    by -a            (for my spygg's github)
+                  """)
 
 def play(filename):
     play_mp3(filename)
@@ -38,17 +41,47 @@ def by_dict(argv):
     argc = len(argv)
     if argc <= 1:
         print("必应词典,by spygg 尝试输入一点东西吧!!")
+        useage()
         return
-
-    #获取单词
-    word = argv[1]
 
     #是否发音
     audio = ''
-    if argc > 2:
-        audio = argv[2]
+
+    #要查询的单词
+    word = ''
+    
+    args = argv[1:]
+   
+    for arg in args:
+        if arg in ('-h',):
+            print(argv[0] + " " + "word")
+            return
+        elif arg in ('--help',):
+            useage()
+            return
+        elif arg in ('-v', '--version'):
+            print(script_name + " version " +  __version__)
+            return
+        elif arg in ('-a', '--about'):
+            print('biying dict by spygg, for more infomation goto')
+            print('www.github.com/spygg/bydict')
+            return
+        elif arg in ('-e',):
+            audio = 'en'
+        elif arg in ('-u',):
+            audio = 'us'
+            return
+        else:
+            if arg.find('-') >= 0:
+                useage()
+                return
+            word = "%s %s" % (word, arg)
+
+        
           
     url = 'http://cn.bing.com/dict/search?q='
+
+    #使用网址转码
     key = urllib.parse.quote(word)
     url = url + key
     
@@ -70,7 +103,7 @@ def by_dict(argv):
             pronunciation_list.append(pr.text)
 
         #中文拼音
-        if len(pronunciation_list) <= 0:
+        if len(pronunciation_list) <= 0 and prs.text:
             pronunciation_list.append(prs.text)
             
         for sound in prs.find_all(class_='bigaud'):
@@ -98,7 +131,9 @@ def by_dict(argv):
     for temp_list in soup.find_all(class_="def"):
         trans_list.append(temp_list.text)
 
-    word = word + ":"
+    if len(pronunciation_list) > 0:
+        word = word + ":"
+        
     for i in range(0, len(pronunciation_list)):
         word = word + (pronunciation_list[i])
         #print(mp3_list[i])
@@ -120,20 +155,11 @@ def by_dict(argv):
             play_mp3_by_process(mp3_list[1])
     except:
         print("没有语音")
+        pass
         
 def main():
     by_dict(sys.argv)
 
 if __name__ == '__main__':
-    #by_dict("词性")
     main()
-    
-##def main(**kwargs):
-##    """Main entry point.
-##    biying dict
-##    """
-##    main(**kwargs)
-##
-##if __name__ == '__main__':
-##    main()   
 

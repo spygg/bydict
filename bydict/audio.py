@@ -7,6 +7,7 @@ import tempfile
 from multiprocessing import Process
 import sys
 import logging
+import threading
 
 def play_mp3(filename):
     if not filename:
@@ -33,6 +34,15 @@ def play_mp3(filename):
         song = AudioSegment.from_mp3(filename)
         play(song)
 
+    print('Finsh play')
+
+#尝试使用线程,失败!
+def play_mp3_by_thread(filename):
+    print("here start")
+    t = threading.Thread(target=_play, args = (filename,))
+    t.start()
+
+#尝试使用进程,失败!     
 def play_mp3_by_process(filename):
     p = Process(target=play, args=(filename,))
     p.start()

@@ -12,9 +12,9 @@ def play_mp3(filename):
     if not filename:
         return
 
-    l = logging.getLogger("pydub.converter")
-    l.setLevel(logging.DEBUG)
-    l.addHandler(logging.StreamHandler())
+##    l = logging.getLogger("pydub.converter")
+##    l.setLevel(logging.DEBUG)
+##    l.addHandler(logging.StreamHandler())
     
     if filename.startswith("http"):
         try:

@@ -70,7 +70,6 @@ def by_dict(argv):
             audio = 'en'
         elif arg in ('-u',):
             audio = 'us'
-            return
         else:
             if arg.find('-') >= 0:
                 useage()

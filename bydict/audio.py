@@ -36,15 +36,15 @@ def play_mp3(filename):
 
     print('Finsh play')
 
-#尝试使用线程,失败!
+#尝试使用线程,失败! Try play with thread failed!!!!
 def play_mp3_by_thread(filename):
     print("here start")
-    t = threading.Thread(target=_play, args = (filename,))
+    t = threading.Thread(target=play_mp3, args = (filename,))
     t.start()
 
-#尝试使用进程,失败!     
+#尝试使用进程,失败!, Try play with process failed!!!!     
 def play_mp3_by_process(filename):
-    p = Process(target=play, args=(filename,))
+    p = Process(target=play_mp3, args=(filename,))
     p.start()
     p.join()
         

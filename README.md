@@ -6,13 +6,19 @@
 格式:
     
         py 测试
+        py test
     
 英文单词(支持音频):
 格式:
     
-        英音:py test en
+        英音:py test -e
         
-        美音:py test us
+        美音:py test -u
+       
+支持双语例句(默认三个例句):
+
+	py word -f 
+	
     
 依赖:
 
@@ -20,11 +26,14 @@
 
 2.*pydub*(发音的时候有调试信息啊,烦死了啊有木有)
 
+3.*playsound*
 
 **TODO:**
 
-    1.去掉~~pydub的调试信息~~(怀疑是ffmpeg的问题, 不过修改pydub的源码加上 -loglevel quiet依然不管用)
+    1.~~去掉pydub的调试信息~~(怀疑是ffmpeg的问题, 不过修改pydub的源码加上 -loglevel quiet依然不管用)
     
-    2.貌似只能支持一个单词
+    2.~~貌似只能支持一个单词~~
+    
+    3.增加数据库支持
     
 

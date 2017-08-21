@@ -6,6 +6,7 @@ import urllib.parse
 import re
 import getopt
 import sys
+from termcolor import colored
 
 #导入包,又是一个恶心的东西
 try:
@@ -23,6 +24,7 @@ def useage():
                     by your_word     (basic use)
                     by your_word  -e (prounce in UK English accent, for english word only)
                     by your_word  -u (prounce in US. English accent, for english word only)
+                    by your_word  -f (give all result of translate)
                     by -h            (for help)
                     by -a            (for my spygg's github)
                   """)
@@ -41,9 +43,11 @@ def by_dict(argv):
     #是否发音
     audio = ''
 
+    #是否显示全部例句
+    full = ""
+    
     #要查询的单词
     word = ''
-    
     args = argv[1:]
    
     for arg in args:
@@ -62,6 +66,8 @@ def by_dict(argv):
             return
         elif arg in ('-e',):
             audio = 'en'
+        elif arg in ('-f',):
+            full = 'y'    
         elif arg in ('-u',):
             audio = 'us'
         else:
@@ -110,7 +116,7 @@ def by_dict(argv):
                     #print('---------------------')
         
     
-    #词性
+    #词性(名词/动词/等....
     word_property_list = []
     for ul in soup.find_all('ul'):
         temp_list = ul.find_all(class_="pos") 
@@ -124,19 +130,46 @@ def by_dict(argv):
     for temp_list in soup.find_all(class_="def"):
         trans_list.append(temp_list.text)
 
-    if len(pronunciation_list) > 0:
-        word = word + ":"
-        
+
+    #打印输出结果
+    pronunciation = ""
     for i in range(0, len(pronunciation_list)):
-        word = word + (pronunciation_list[i])
+        pronunciation = pronunciation + (pronunciation_list[i])
         #print(mp3_list[i])
-    print(word)
+        
+    print(colored('[%s]' % (word.lstrip().rstrip(),), 'blue', attrs=['bold']), colored(pronunciation, 'white', 'on_green'))
+        
     for i in range(0, len(word_property_list)):
         print([word_property_list[i]], trans_list[i])
         pass
             
     #print("######################################\n")
 
+    #双语例句
+    en_sentence_list = []
+    cn_sentence_list = []
+    for sentence in soup.find_all(class_='sen_en'):
+        #print(sentence.text)
+        en_sentence_list.append(sentence.text)
+
+    for sentence in soup.find_all(class_='sen_cn'):
+        #print(sentence.text)
+        cn_sentence_list.append(sentence.text)
+
+    if len(cn_sentence_list) == len(en_sentence_list):
+        print('\n' + colored("双语例句:", "yellow", attrs=['bold']))
+        if full == 'y':
+            length =  len(cn_sentence_list)
+        else:
+            length =  min(3, len(cn_sentence_list))
+            
+        for i in range(0, length):
+            print(colored("%d." % (i + 1,) + en_sentence_list[i], 'green'))
+            print(colored(cn_sentence_list[i], 'magenta'))
+
+    if(length < len(cn_sentence_list)):
+        print(colored("more....", 'white', 'on_red'))
+        
     #发音
     try:
         if audio == 'en':
@@ -149,7 +182,7 @@ def by_dict(argv):
     except:
         print("没有语音")
         pass
-        
+    
 def main():
     by_dict(sys.argv)
 

@@ -1,15 +1,24 @@
 #!/usr/bin/env python
 # coding=utf-8
-from pydub import AudioSegment
-from pydub.playback import play
+
 import urllib.request
 import tempfile
-from multiprocessing import Process
 import sys
 import logging
-import threading
+
+try:
+    import playsound
+except:
+    from pydub import AudioSegment
+    from pydub.playback import play
+
 
 def play_mp3(filename):
+    if not filename:
+        return
+    playsound.playsound(filename)
+        
+def play_mp3_pydub(filename):
     if not filename:
         return
 
@@ -34,20 +43,10 @@ def play_mp3(filename):
         song = AudioSegment.from_mp3(filename)
         play(song)
 
-#尝试使用线程,失败! Try play with thread failed!!!!
-def play_mp3_by_thread(filename):
-    print("here start")
-    t = threading.Thread(target=play_mp3, args = (filename,))
-    t.start()
-
-#尝试使用进程,失败!, Try play with process failed!!!!     
-def play_mp3_by_process(filename):
-    p = Process(target=play_mp3, args=(filename,))
-    p.start()
-    p.join()
         
 if __name__ == '__main__':
     filename = 'https://dictionary.blob.core.chinacloudapi.cn/media/audio/tom/d8/6c/D86CEAEFA3504E6E1368552B058AD528.mp3'
     play_mp3(filename)
+    
     print("finshed!")
 

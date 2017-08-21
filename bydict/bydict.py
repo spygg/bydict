@@ -6,8 +6,6 @@ import urllib.parse
 import re
 import getopt
 import sys
-from multiprocessing import Process
-
 
 #导入包,又是一个恶心的东西
 try:
@@ -32,10 +30,6 @@ def useage():
 def play(filename):
     play_mp3(filename)
     
-def play_mp3_by_process(filename):
-    p = Process(target=play, args=(filename,))
-    p.start()
-    p.join()
     
 def by_dict(argv):
     argc = len(argv)
@@ -148,10 +142,10 @@ def by_dict(argv):
         if audio == 'en':
             #print(mp3_list[0])
             #play_mp3(mp3_list[0])
-            play_mp3_by_process(mp3_list[0])
+            play(mp3_list[0])
         elif audio == 'us':
             #play_mp3(mp3_list[1])
-            play_mp3_by_process(mp3_list[1])
+            play(mp3_list[1])
     except:
         print("没有语音")
         pass

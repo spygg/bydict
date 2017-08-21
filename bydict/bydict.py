@@ -180,7 +180,7 @@ def by_dict(argv):
             #play_mp3(mp3_list[1])
             play(mp3_list[1])
     except:
-        print("没有语音")
+        print(colored("没有语音", 'white', 'on_red'))
         pass
     
 def main():

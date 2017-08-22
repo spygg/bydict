@@ -1,6 +1,7 @@
 
 ####一个简单的 "比应词典"爬虫,带*语音*哦 只是最简单的网页解析,适合初学者,连POST都没用到,不过正则表达式花了我几个小时来调试啊!!!!!
-
+![](https://github.com/spygg/bydict/blob/master/screenshot/Screenshot%20from%202017-08-22%2022-57-54.png) 
+![](https://github.com/spygg/bydict/blob/master/screenshot/Screenshot%20from%202017-08-22%2023-01-37.png) 
 支持 **中/英文**
 
 中文单词(带拼音):

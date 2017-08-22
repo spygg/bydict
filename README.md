@@ -1,3 +1,7 @@
+![](http://imgsrc.baidu.com/forum/w%3D580/sign=10364ecac5fc1e17fdbf8c397a92f67c/c266c7dcd100baa19e8ebe674d10b912c9fc2e23.jpg) 
+
+![](http://imgsrc.baidu.com/forum/w%3D580/sign=025b2a2171899e51788e3a1c72a5d990/8c528cde9c82d158fb1ea06d8a0a19d8bd3e422d.jpg) 
+
 ####一个简单的 "比应词典"爬虫,带*语音*哦 只是最简单的网页解析,适合初学者,连POST都没用到,不过正则表达式花了我几个小时来调试啊!!!!!
 
 支持 **中/英文**

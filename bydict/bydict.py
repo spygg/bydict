@@ -130,21 +130,6 @@ def by_dict(argv):
     for temp_list in soup.find_all(class_="def"):
         trans_list.append(temp_list.text)
 
-
-    #打印输出结果
-    pronunciation = ""
-    for i in range(0, len(pronunciation_list)):
-        pronunciation = pronunciation + (pronunciation_list[i])
-        #print(mp3_list[i])
-        
-    print(colored('[%s]' % (word.lstrip().rstrip(),), 'blue', attrs=['bold']), colored(pronunciation, 'white', 'on_green'))
-        
-    for i in range(0, len(word_property_list)):
-        print([word_property_list[i]], trans_list[i])
-        pass
-            
-    #print("######################################\n")
-
     #双语例句
     en_sentence_list = []
     cn_sentence_list = []
@@ -155,7 +140,20 @@ def by_dict(argv):
     for sentence in soup.find_all(class_='sen_cn'):
         #print(sentence.text)
         cn_sentence_list.append(sentence.text)
+        
 
+    #打印输出结果
+    pronunciation = ""
+    for i in range(0, len(pronunciation_list)):
+        pronunciation = pronunciation + (pronunciation_list[i])
+        #print(mp3_list[i])
+    print(colored('[%s]' % (word.lstrip().rstrip(),), 'blue', attrs=['bold']), colored(pronunciation, 'white', 'on_green'))
+        
+    for i in range(0, len(word_property_list)):
+        print([word_property_list[i]], trans_list[i])
+        pass
+            
+    #print("######################################\n")
     if len(cn_sentence_list) == len(en_sentence_list):
         print('\n' + colored("双语例句:", "yellow", attrs=['bold']))
         if full == 'y':

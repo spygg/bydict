@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: by
+Version: 0.0.0.1
+Summary: 比应词典单词查询、存储和管理的命令行工具
+Home-page: https://github.com/louisun/iSearch
+Author: spygg
+Author-email: liushidcn@163.com
+License: GPL3
+Description: UNKNOWN
+Keywords: dictionary,biying,word
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GPL3 License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+by.egg-info/PKG-INFO
+by.egg-info/SOURCES.txt
+by.egg-info/dependency_links.txt
+by.egg-info/entry_points.txt
+by.egg-info/requires.txt
+by.egg-info/top_level.txt
+bydict/__init__.py
+bydict/__main__.py
+bydict/audio.py
+bydict/bydict.py
+bydict/version.py

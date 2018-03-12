@@ -1,0 +1,3 @@
+[console_scripts]
+by = bydict.bydict:main
+

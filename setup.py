@@ -19,7 +19,7 @@ setup(
     author_email='liushidcn@163.com',
     description='比应词典单词查询、存储和管理的命令行工具',
     install_requires=[
-        'termcolor', 'pydub','bs4'
+        'termcolor', 'playsound','bs4'
     ],
     entry_points = {
         'console_scripts': [

@@ -6,11 +6,7 @@ import tempfile
 import sys
 import logging
 
-try:
-    import playsound
-except:
-    from pydub import AudioSegment
-    from pydub.playback import play
+import playsound
 
 
 def play_mp3(filename):

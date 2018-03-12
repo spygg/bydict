@@ -6,7 +6,7 @@ import urllib.parse
 import re
 import getopt
 import sys
-from termcolor import colored
+import platform
 
 #导入包,又是一个恶心的东西
 try:
@@ -18,7 +18,16 @@ try:
     from version import script_name, __version__
 except:
     from .version import script_name, __version__
-    
+
+if "Linux" == platform.system():
+    from termcolor import colored
+elif "Windows" == platform.system():
+    def colored(string, color, attrs = "normal"):
+        return string
+else:
+    def colored(string, color, attrs = "normal"):
+        return string
+
 def useage():
     print("""Useage:
                     by your_word     (basic use)
